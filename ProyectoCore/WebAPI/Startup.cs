@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Persistencia;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using Aplicacion.Cursos;
 
 namespace WebAPI
 {
@@ -32,6 +34,7 @@ namespace WebAPI
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddMediatR(typeof(Consulta.Manejador).Assembly);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
