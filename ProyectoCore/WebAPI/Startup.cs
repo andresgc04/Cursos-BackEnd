@@ -15,6 +15,7 @@ using Persistencia;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Aplicacion.Cursos;
+using FluentValidation.AspNetCore;
 
 namespace WebAPI
 {
@@ -35,7 +36,7 @@ namespace WebAPI
             });
 
             services.AddMediatR(typeof(Consulta.Manejador).Assembly);
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<NuevoCurso>());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });

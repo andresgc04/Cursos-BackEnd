@@ -11,7 +11,7 @@ namespace Dominio
 
         public string Descripcion {get;set;}
 
-        public DateTime FechaPublicacion {get;set;}
+        public DateTime? FechaPublicacion {get;set;}
 
         public byte[] FotoPortada {get;set;}
 
