@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Aplicacion.Cursos;
 using FluentValidation.AspNetCore;
+using WebAPI.Middleware;
 
 namespace WebAPI
 {
@@ -46,9 +47,11 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ManejadorErrorMiddleware>();
+            
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }

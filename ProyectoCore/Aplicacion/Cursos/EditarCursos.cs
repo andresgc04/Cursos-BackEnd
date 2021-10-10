@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Aplicacion.ManejadorError;
 using FluentValidation;
 using MediatR;
 using Persistencia;
@@ -44,7 +46,7 @@ namespace Aplicacion.Cursos
 
                 if (curso == null)
                 {
-                    throw new Exception("El curso no existe");
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "No se encontro el curso" });
                 }
 
                 curso.Titulo = request.Titulo ?? curso.Titulo;
